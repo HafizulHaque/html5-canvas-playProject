@@ -17,20 +17,21 @@ const mouse = {
 canvas.addEventListener('mousemove', function(event){
   mouse.x = event.x
   mouse.y = event.y
-  console.log(`mouse at (${event.x}, ${event.y})`)
+  // console.log(`mouse at (${event.x}, ${event.y})`)
+  init(3)
 })
 
 canvas.addEventListener('click', function(event){
-  init()
+  init(100)
 })
 
 class Particle {
   constructor(){
     this.x = mouse.x || Math.random() * canvas.width
     this.y = mouse.y || Math.random() * canvas.height
-    this.size = Math.random()*20 + 10;
-    this.speedX = Math.random()*5 -2.5
-    this.speedY = Math.random()*5 -2.5
+    this.size = Math.random()* 10 + 5;
+    this.speedX = Math.random()*5 - 2.5
+    this.speedY = Math.random()*5 - 2.5
     this.hue = Math.random() * 360
   }
   update(){
@@ -40,15 +41,15 @@ class Particle {
   }
   draw(){
     this.hue += 2
-    ctx.fillStyle = `hsl(${this.hue}, 100%, 50%)`
+    ctx.fillStyle = 'white' || `hsl(${this.hue}, 100%, 50%)`
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.size, 0, Math.PI*2)
     ctx.fill()
   }
 }
 
-function init(){
-  for(let i = 0; i < 100; i++){
+function init(n){
+  for(let i = 0; i < n; i++){
     particlesArray.push(new Particle())
   }
 }
