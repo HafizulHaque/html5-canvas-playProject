@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 const particlesArray = []
+let hue = 0;
 
 window.addEventListener('resize', function(){
   canvas.width = window.innerWidth
@@ -41,7 +42,7 @@ class Particle {
   }
   draw(){
     this.hue += 2
-    ctx.fillStyle = 'white' || `hsl(${this.hue}, 100%, 50%)`
+    ctx.fillStyle = `hsl(${hue}, 100%, 50%)` || `hsl(${this.hue}, 100%, 50%)`
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.size, 0, Math.PI*2)
     ctx.fill()
@@ -68,9 +69,10 @@ function handleParticles(){
 
 function animate(){
   // ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.fillStyle =  `rgba(0, 0, 0, 0.2)`
+  ctx.fillStyle =  `rgba(0, 0, 0, 0.1)`
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   handleParticles()
+  hue = (hue+1)%360;
   requestAnimationFrame(animate)
 }
 
