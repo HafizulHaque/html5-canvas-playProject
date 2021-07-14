@@ -66,7 +66,7 @@ function handleParticles(){
 }
 
 function animate(){
-  // ctx.clearRect(0, 0, canvas.width, canvas.height)
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
   handleParticles()
   requestAnimationFrame(animate)
 }
